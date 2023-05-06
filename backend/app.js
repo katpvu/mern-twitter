@@ -7,6 +7,9 @@ const csurf = require('csurf');
 const cors = require('cors');
 const { isProduction } = require('./config/keys');
 
+
+require('./models/User');
+
 const usersRouter = require('./routes/api/users');
 const tweetsRouter = require('./routes/api/tweets')
 const csrfRouter = require('./routes/api/csrf')
@@ -36,9 +39,9 @@ app.use(
     })
   );
 
-app.use('/api/csrf', csrfRouter)
 app.use('/api/users', usersRouter);
 app.use('/api/tweets', tweetsRouter)
+app.use('/api/csrf', csrfRouter)
 
 app.use((req, res, next) => {
     const err = new Error('Not Found');
