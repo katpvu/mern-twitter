@@ -38,6 +38,7 @@ router.get('/current', restoreUser, (req, res) => {
 
 // POST /api/users/register
 router.post('/register', validateRegisterInput, async (req, res, next) => {
+  console.log("im here")
   const user = await User.findOne({
     $or: [{ email: req.body.email }, { username: req.body.username }]
   });
